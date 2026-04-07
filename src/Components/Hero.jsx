@@ -54,9 +54,13 @@ export default function Hero() {
               Depilación láser y tratamientos premium
             </p>
 
-            <button className="btn fade">
-              Agendar cita
-            </button>
+           <a 
+  href="https://wa.me/527226832559" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <button className="btn fade">Agendar cita</button>
+</a> 
           </>
         )}
       </div>
