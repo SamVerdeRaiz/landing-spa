@@ -44,7 +44,7 @@ export default function Navbar() {
 
         {/* LOGO */}
         <div className="logo">
-          <img src="/public/logo.png" alt="MOAN Spa & Beauty" />
+        <img src="/logo.png" alt="logomoan" />
         </div>
 
         {/* MENÚ */}
