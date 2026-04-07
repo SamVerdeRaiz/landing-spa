@@ -1,0 +1,1119 @@
+
+
+/* =========================
+   RESET + BASE
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.html, .body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.html {
+  scroll-behavior: smooth;
+}
+
+.body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --primary: #77B1D4;
+  --primary-light: #E0CD95;
+  --accent: #C19A6B;
+  --accent-dark: #8B6B4A;
+  --bg-main: #F4EFEA;
+  --text-dark: #0A0A0A;
+}
+
+/* =========================
+   TIPOGRAFÍA
+========================= */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 1000;
+  background: #4C7EAE;
+  backdrop-filter: blur(10px);
+
+  transition: all 0.4s ease;
+}
+
+.nav.active {
+  background: #517891;
+}
+
+.nav.hide {
+  transform: translateY(-110%);
+}
+
+.nav.show {
+  transform: translateY(0);
+}
+
+/* LOGO */
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo img {
+  height: 50px;
+  display: block;
+}
+
+/* HAMBURGER */
+.hamburger {
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+/* =========================
+   MENÚ LATERAL
+========================= */
+.menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+
+  width: 80%;
+  max-width: 320px;
+
+  height: 100dvh; /* 🔥 CLAVE (no uses 100vh) */
+
+  background: #4C7EAE;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 40px 30px;
+
+  transition: left 0.4s ease;
+  z-index: 10000;
+}
+
+.menu.open {
+  box-shadow: black;
+  left: 0;
+}
+
+.menu a {
+  color: white;
+  font-size: 1.4rem;
+  margin: 15px 0;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  color: var(--accent);
+}
+
+/* =========================
+   HERO FULLSCREEN
+========================= */
+.hero {
+  position: relative;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* 🎥 VIDEO */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* 🔥 AQUÍ LA MAGIA */
+  filter: grayscale(100%) contrast(1.1) brightness(0.8);
+}
+
+/* 🌑 OVERLAY (mejora contraste) */
+.overlay {
+  position: relative;
+  z-index: 2;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: white;
+
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* 🖼️ LOGO (queda en color) */
+.hero-logo {
+  width: clamp(220px, 30vw, 420px);
+  margin-bottom: 20px;
+
+  /* 🔥 asegura que no herede filtros */
+  filter: none;
+}
+
+/* ✨ TEXTO */
+.fade {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+
+.fade:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.fade:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🔘 BOTÓN */
+.btn {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+
+  background: var(--accent);
+  color: white;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: white;
+  color: black;
+}
+/* =========================
+   SERVICES SECTION PRO
+========================= */
+.services {
+  position: relative;
+
+  background: 
+    linear-gradient(rgba(20, 40, 60, 0.65), rgba(20, 40, 60, 0.75)),
+    url("/fondo1.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+/* =========================
+   SERVICES APPLE STYLE
+========================= */
+
+.services h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  margin-bottom: 40px;
+  letter-spacing: 1.5px;
+}
+
+/* =========================
+   GRID 2x2 CLEAN
+========================= */
+.grid {
+  display: grid;
+  gap: 20px;
+  max-width: 800px;
+  margin: auto;
+
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   CARD BASE (APPLE)
+========================= */
+.service-card {
+  position: relative;
+  border-radius: 22px;
+  padding: 25px;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow: 
+    0 8px 25px rgba(0,0,0,0.25),
+    inset 0 1px 1px rgba(255,255,255,0.1);
+
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+  min-height: 140px;
+}
+
+/* HOVER SUAVE */
+.service-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* =========================
+   CARD BOX
+========================= */
+.card-box {
+  position: relative;
+  height: 100%;
+}
+
+/* =========================
+   FRONT (TÍTULO)
+========================= */
+.card-front {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.35s ease;
+}
+
+.card-front h3 {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   BACK (CONTENIDO)
+========================= */
+.card-back {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 10px;
+
+  opacity: 0;
+  transform: scale(0.95);
+
+  transition: all 0.35s ease;
+  pointer-events: none; /* 🔥 NO recibe clicks oculto */
+}
+
+.card-back p {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+/* =========================
+   ACTIVE (FLIP FADE)
+========================= */
+.service-card.active .card-front {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.service-card.active .card-back {
+  opacity: 1;
+  transform: scale(1);
+    pointer-events: auto; /* 🔥 SOLO cuando está visible */
+
+}
+.service-card:active {
+  transform: scale(0.97);
+}
+
+/* =========================
+   BUTTON APPLE STYLE
+========================= */
+.btn {
+  background: var(--accent);
+  color: white;
+
+  padding: 10px 16px;
+  border-radius: 20px;
+
+  font-size: 13px;
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+   position: relative;
+  z-index: 2;
+}
+
+.btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* =========================
+   ABOUT SECTION (PREMIUM)
+========================= */
+.about {
+  min-height: 100dvh;
+  padding: 100px 20px;
+
+  background: linear-gradient(180deg, #F4EFEA, #ffffff);
+  color: #0A0A0A;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   TITLE
+========================= */
+.about-title {
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 60px;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+/* =========================
+   GRID EDITORIAL
+========================= */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+
+  width: 90%;
+  max-width: 1100px;
+}
+
+/* =========================
+   ITEMS
+========================= */
+.about-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+/* =========================
+   IMAGES (LUJO)
+========================= */
+.about-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  border-radius: 20px;
+
+  transition: all 0.5s ease;
+}
+
+/* HOVER SUAVE */
+.about-item:hover img {
+  transform: scale(1.05);
+}
+
+/* =========================
+   TEXT BLOCK (PRO)
+========================= */
+.text-block {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+
+  padding: 25px;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* TITULOS */
+.text-block h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #0e2f44;
+}
+
+/* TEXTO */
+.text-block p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* TABLET */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about {
+    padding: 80px 15px;
+  }
+
+  .about-title {
+    margin-bottom: 40px;
+  }
+}
+
+/* =========================
+   WHATSAPP BUTTON PRO
+========================= */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  width: 60px;
+  height: 60px;
+
+  background: #4C7EAE;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+
+  z-index: 9999;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+/* HOVER BOTÓN */
+.whatsapp:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
+/* =========================
+   TOOLTIP TEXTO
+========================= */
+.whatsapp::after {
+  content: "¿Necesitas ayuda?";
+
+  position: absolute;
+  right: 75px; /* 🔥 separación del botón */
+
+  background: rgba(0,0,0,0.8);
+  color: white;
+
+  padding: 6px 12px;
+  border-radius: 10px;
+
+  font-size: 12px;
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(10px);
+
+  transition: all 0.3s ease;
+
+  pointer-events: none; /* 🔥 evita bugs de click */
+}
+
+/* MOSTRAR TEXTO */
+.whatsapp:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* =========================
+   LOADER PRO
+========================= */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  background: #0e2f44; /* puedes cambiarlo */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* CUANDO SE OCULTA */
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* CONTENEDOR */
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LOGO */
+.loader-logo {
+  width: clamp(120px, 25vw, 220px); /* 🔥 responsive */
+  height: auto;
+
+  opacity: 0;
+  transform: scale(0.9);
+
+  animation: logoFade 1.2s ease forwards;
+}
+
+/* LÍNEA */
+.line {
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 20px;
+  border-radius: 10px;
+
+  animation: loadLine 1.2s ease forwards;
+  animation-delay: 0.5s;
+}
+
+/* ANIMACIONES */
+@keyframes logoFade {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes loadLine {
+  to {
+    width: 100px;
+  }
+}
+
+/* =========================
+   LOCATION SECTION PREMIUM
+========================= */
+.location { 
+  position: relative;
+
+  background: 
+    linear-gradient(rgba(20, 40, 60, 0.65), rgba(20, 40, 60, 0.75)),
+    url("/fondo2.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+/* TITULO */
+.location h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+}
+
+/* DIRECCIÓN */
+.location p {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   MAP CARD (APPLE STYLE)
+========================= */
+.map-container {
+  max-width: 800px;
+  margin: auto;
+
+  border-radius: 24px;
+  overflow: hidden;
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.35),
+    inset 0 1px 1px rgba(255,255,255,0.1);
+
+  backdrop-filter: blur(10px);
+
+  transition: all 0.4s ease;
+}
+
+/* HOVER */
+.map-container:hover {
+  transform: scale(1.02);
+}
+
+/* MAPA */
+.map-container iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+}
+
+/* =========================
+   BUTTON (MODERNO)
+========================= */
+.location .btn {
+  display: inline-block;
+  margin-top: 30px;
+
+  padding: 12px 22px;
+  border-radius: 30px;
+
+  background: var(--accent);
+  color: white;
+
+  text-decoration: none;
+  font-size: 14px;
+
+  transition: all 0.3s ease;
+}
+
+/* HOVER */
+.location .btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* =========================
+   PENGUIN FUN UX 🐧
+========================= */
+.penguin {
+  position: absolute;
+  bottom: 20px;
+  left: -80px;
+  font-size: 32px;
+
+  animation: walkPenguin 12s linear infinite;
+}
+
+/* ANIMACIÓN SUAVE */
+@keyframes walkPenguin {
+  0% {
+    left: -80px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 45%;
+    transform: scaleX(1);
+  }
+
+  51% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -80px;
+    transform: scaleX(-1);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  .map-container iframe {
+    height: 250px;
+  }
+
+  .location p {
+    font-size: 13px;
+  }
+}
+/* =========================
+   FOOTER FULL SCREEN PRO
+========================= */
+.footer {
+  min-height: 100dvh;
+  background: #0e2f44;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 80px 20px 30px;
+}
+
+/* GRID REAL */
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  align-items: center;
+
+  max-width: 1100px;
+  margin: auto;
+  gap: 40px;
+}
+
+/* LOGO */
+.footer-logo {
+  width: clamp(140px, 16vw, 200px);
+  margin-bottom: 15px;
+}
+
+/* TEXTO */
+.footer-brand p {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+/* SOCIAL */
+.footer-social {
+  text-align: center;
+}
+
+.footer-social h4 {
+  color: #C19A6B;
+  margin-bottom: 15px;
+}
+
+/* ICONOS */
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* =========================
+   ICONOS PREMIUM (iPhone UX)
+========================= */
+
+.icons a {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* ICONO */
+.icons svg {
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+/* 🔥 HOVER EFECTO GLOW */
+.icons a:hover {
+  transform: translateY(-6px) scale(1.08);
+
+  background: linear-gradient(135deg, #C19A6B, #E0CD95);
+
+  box-shadow:
+    0 10px 25px rgba(193,154,107,0.4),
+    0 0 20px rgba(193,154,107,0.3);
+}
+
+/* ICONO CRECE */
+.icons a:hover svg {
+  transform: scale(1.2);
+}
+
+/* 🔥 EFECTO "LUZ PASANDO" */
+.icons a::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.3),
+    transparent
+  );
+  top: -10%;
+  left: -120%;
+
+  transition: 0.6s;
+}
+
+/* ANIMACIÓN */
+.icons a:hover::before {
+  left: 120%;
+}
+
+/* 🔥 CLICK EFECTO (TACTIL PRO) */
+.icons a:active {
+  transform: scale(0.92);
+}
+
+/* CONTACTO */
+.footer-contact {
+  text-align: right;
+}
+
+.footer-contact h4 {
+  color: #C19A6B;
+  margin-bottom: 10px;
+}
+
+/* BOTTOM */
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 15px;
+
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-contact {
+    text-align: center;
+  }
+
+  .footer-logo {
+    margin: 0 auto 15px;
+  }
+}
+
+/* =========================
+   BOOKING SECTION
+========================= */
+.booking { 
+  position: relative;
+
+  background: 
+    linear-gradient(rgba(20, 40, 60, 0.65), rgba(20, 40, 60, 0.75)),
+    url("/fondo3.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+/* TITULO */
+.location h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+}
+
+.booking h2 {
+  font-size: clamp(26px, 4vw, 36px);
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+/* =========================
+   FORM
+========================= */
+.booking-form {
+  max-width: 500px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
+  border-radius: 20px;
+
+  backdrop-filter: blur(10px);
+}
+
+/* INPUTS */
+.booking-form input {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+
+  background: rgba(255,255,255,0.15);
+  color: white;
+
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* PLACEHOLDER */
+.booking-form input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+/* FOCUS */
+.booking-form input:focus {
+  background: rgba(255,255,255,0.25);
+}
+
+/* DATE / TIME ICON FIX */
+.booking-form input[type="date"],
+.booking-form input[type="time"] {
+  color: white;
+}
+
+/* BUTTON */
+.booking-form button {
+  margin-top: 10px;
+  padding: 12px;
+
+  border: none;
+  border-radius: 30px;
+
+  background: var(--accent);
+  color: white;
+
+  font-size: 15px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+/* HOVER */
+.booking-form button:hover {
+  background: white;
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 480px) {
+  .booking-form {
+    padding: 20px;
+  }
+}
+
+
+.icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.icons a {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+
+  color: white;
+  font-size: 18px;
+
+  transition: all 0.3s ease;
+}
+
+.icons a:hover {
+  background: var(--accent);
+  transform: translateY(-4px) scale(1.1);
+}
