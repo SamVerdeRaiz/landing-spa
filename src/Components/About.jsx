@@ -37,10 +37,10 @@ export default function About() {
 
         {/* 3 */}
         <div className="about-item animate fade-up text-block">
-          <h3>Tecnología avanzada</h3>
+          <h3>Resultados más rápidos y visibles</h3>
           <p>Equipos modernos para ofrecer resultados visibles y seguros en cada tratamiento.</p>
 
-          <h3>Atención personalizada</h3>
+          <h3>Tratamientos adaptados a tu piel</h3>
           <p>Cada servicio se adapta a las necesidades específicas de cada cliente.</p>
 
           <h3>Ambiente relajante</h3>

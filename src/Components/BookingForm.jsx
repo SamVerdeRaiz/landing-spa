@@ -1,5 +1,20 @@
+import { useState } from "react";
 
-import { useEffect, useState, useRef } from "react";
+const servicios = [
+  "Depilación láser",
+  "Facial",
+  "Limpieza profunda",
+];
+
+const horariosDisponibles = [
+  "10:00",
+  "11:00",
+  "12:00",
+  "13:00",
+  "16:00",
+  "17:00",
+  "18:00",
+];
 
 export default function BookingForm() {
   const [form, setForm] = useState({
@@ -13,8 +28,17 @@ export default function BookingForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const seleccionarHora = (hora) => {
+    setForm({ ...form, hora });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!form.hora) {
+      alert("Selecciona una hora");
+      return;
+    }
 
     const mensaje = `Hola, soy ${form.nombre}. Quiero ${form.servicio} el ${form.fecha} a las ${form.hora}`;
 
@@ -28,26 +52,68 @@ export default function BookingForm() {
     <section className="booking" id="booking">
       <h2>Agendar cita</h2>
 
+      {/* 🔥 SOCIAL PROOF */}
+      <p className="clients">
+        Más de 120 citas agendadas este mes
+      </p>
+
+      {/* FORM */}
       <form className="booking-form" onSubmit={handleSubmit}>
+        
         <input
           name="nombre"
-          placeholder="Nombre"
+          placeholder="Tu nombre"
           onChange={handleChange}
           required
         />
 
-        <input
+        {/* 🔥 SELECT SERVICIO */}
+        <select
           name="servicio"
-          placeholder="Servicio"
+          onChange={handleChange}
+          required
+          value={form.servicio}
+        >
+          <option value="">Selecciona un servicio</option>
+          {servicios.map((s, i) => (
+            <option key={i} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+
+        {/* FECHA */}
+        <input
+          type="date"
+          name="fecha"
           onChange={handleChange}
           required
         />
 
-        <input type="date" name="fecha" onChange={handleChange} required />
+        {/* 🔥 HORARIOS COMO BOTONES */}
+        <div className="horarios">
+          {horariosDisponibles.map((hora) => (
+            <button
+              type="button"
+              key={hora}
+              className={`hora-btn ${
+                form.hora === hora ? "active" : ""
+              }`}
+              onClick={() => seleccionarHora(hora)}
+            >
+              {hora}
+            </button>
+          ))}
+        </div>
 
-        <input type="time" name="hora" onChange={handleChange} required />
+        {/* CTA */}
+        <button type="submit" className="main-btn">
+          Agendar con promoción
+        </button>
 
-        <button type="submit">Agendar</button>
+        <p className="microcopy">
+          Confirmación inmediata por WhatsApp
+        </p>
       </form>
     </section>
   );

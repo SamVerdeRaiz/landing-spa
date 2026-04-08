@@ -44,7 +44,7 @@ export default function Navbar() {
 
         {/* LOGO */}
         <div className="logo">
-        <img src="/logo.png" alt="logomoan" />
+        <img src="/logo-hero.png" alt="logomoan" />
         </div>
 
         {/* MENÚ */}

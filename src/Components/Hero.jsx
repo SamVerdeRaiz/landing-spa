@@ -46,24 +46,31 @@ export default function Hero() {
 
       {/* CONTENIDO */}
       <div className="overlay">
-        <img src="/logo-hero.png" alt="Moan Spa & Beauty" className="hero-logo" />
+        <img src="/logo.png" alt="Moan Spa & Beauty" className="hero-logo" />
 
         {showText && (
           <>
             <p className="fade">
-              Depilación láser y tratamientos premium
+              Resultados visibles desde la primera sesión
             </p>
 
            <a 
-  href="https://wa.me/527226832559" 
-  target="_blank" 
-  rel="noopener noreferrer"
->
-  <button className="btn fade">Agendar cita</button>
-</a> 
+              href="https://wa.me/527226832559" 
+               target="_blank" 
+                 rel="noopener noreferrer">
+          <button className="btn fade">Reservar mi sesión ahora</button>
+          
+
+         
+          </a> 
+
           </>
+      
+
+
         )}
       </div>
+
 
     </section>
   );
